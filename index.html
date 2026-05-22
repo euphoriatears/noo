@@ -228,6 +228,47 @@ body::before{
     transform:scale(1.03) rotate(1deg);
 }
 
+
+/* TELEGRAM ACCENT */
+
+.telegram-btn{
+    position:relative;
+    overflow:hidden;
+}
+
+.telegram-btn::before{
+    content:'';
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:120%;
+    height:1px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.9),
+        transparent
+    );
+
+    animation:telegramGlow 3s linear infinite;
+}
+
+@keyframes telegramGlow{
+
+    0%{
+        left:-120%;
+    }
+
+    100%{
+        left:120%;
+    }
+
+}
+    
 /* INFO */
 
 .info{
@@ -720,7 +761,7 @@ body::before{
 
          <div class="contacts">
 
-          <div class="contact" onclick="openTelegram()">
+          <div class="contact telegram-btn" onclick="openTelegram()">
                 TELEGRAM
         </div>
 
