@@ -724,10 +724,6 @@ body::before{
                 TELEGRAM
         </div>
 
-        <div class="contact" onclick="openWhatsApp()">
-                WHATSAPP
-          </div>
-
         <div class="contact" onclick="openViber()">
              VIBER
           </div>
@@ -819,19 +815,6 @@ function openTelegram(){
 
     window.open(
         `https://t.me/crsdcrcle?text=${message}`,
-        '_blank'
-    )
-
-}
-
-/* WHATSAPP */
-
-function openWhatsApp(){
-
-    const message = createMessage()
-
-    window.open(
-        `https://wa.me/380000000000?text=${message}`,
         '_blank'
     )
 
