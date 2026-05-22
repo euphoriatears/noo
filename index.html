@@ -536,6 +536,12 @@ body::before{
     transition:0.4s;
 }
 
+
+.active-size{
+    background:white !important;
+    color:black !important;
+}
+    
 .submit button:hover{
     transform:translateY(-4px);
 
@@ -645,31 +651,31 @@ body::before{
     <div 
         class="color"
         style="background:#0f0f10;"
-        onclick="changeShirt('assets/black.jpg')"
+        onclick="changeShirt('assets/black.jpg', 'Black')"
     ></div>
 
     <div 
         class="color"
         style="background:#2f2f2f;"
-        onclick="alert('работает')"
+        onclick="changeShirt('assets/gray.jpg', 'Gray')"
     ></div>
 
     <div 
         class="color"
         style="background:#d8d8d8;"
-        onclick="changeShirt('assets/white.jpg')"
+        onclick="changeShirt('assets/white.jpg', 'White')"
     ></div>
 
     <div 
         class="color"
         style="background:#9c8c7d;"
-        onclick="changeShirt('assets/beige.jpg')"
+        onclick="changeShirt('assets/beige.jpg', 'Beige')"
     ></div>
 
     <div 
         class="color"
         style="background:#c7b2a3;"
-        onclick="changeShirt('assets/pink.jpg')"
+        onclick="changeShirt('assets/pink.jpg', 'Pink')"
     ></div>
 
 </div>
@@ -712,21 +718,21 @@ body::before{
             <p>CONTACT OR LEAVE A REQUEST</p>
         </div>
 
-        <div class="contacts">
+         <div class="contacts">
 
-            <div class="contact">
+          <div class="contact" onclick="openTelegram()">
                 TELEGRAM
-            </div>
-
-            <div class="contact">
-                WHATSAPP
-            </div>
-
-            <div class="contact">
-                VIBER
-            </div>
-
         </div>
+
+        <div class="contact" onclick="openWhatsApp()">
+                WHATSAPP
+          </div>
+
+        <div class="contact" onclick="openViber()">
+             VIBER
+          </div>
+
+</div> 
 
         <div class="form">
 
@@ -749,9 +755,16 @@ body::before{
 </section>
 <script>
 
-function changeShirt(image){
+let selectedColor = 'Black'
+let selectedSize = 'S'
+
+/* IMAGE CHANGE */
+
+function changeShirt(image, color){
 
     const shirt = document.getElementById('productImage')
+
+    selectedColor = color
 
     shirt.style.opacity = '0'
 
@@ -764,6 +777,80 @@ function changeShirt(image){
     }, 200)
 
 }
+
+/* SIZE */
+
+const sizeButtons = document.querySelectorAll('.size')
+
+sizeButtons.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        sizeButtons.forEach(btn => {
+            btn.classList.remove('active-size')
+        })
+
+        button.classList.add('active-size')
+
+        selectedSize = button.innerText
+
+    })
+
+})
+
+/* MESSAGE */
+
+function createMessage(){
+
+    return encodeURIComponent(
+`NOCTERA ORDER
+
+Color: ${selectedColor}
+Size: ${selectedSize}`
+    )
+
+}
+
+/* TELEGRAM */
+
+function openTelegram(){
+
+    const message = createMessage()
+
+    window.open(
+        `https://t.me/crsdcrcle?text=${message}`,
+        '_blank'
+    )
+
+}
+
+/* WHATSAPP */
+
+function openWhatsApp(){
+
+    const message = createMessage()
+
+    window.open(
+        `https://wa.me/380000000000?text=${message}`,
+        '_blank'
+    )
+
+}
+
+/* VIBER */
+
+function openViber(){
+
+    const message = createMessage()
+
+    window.open(
+        `viber://forward?text=${message}`,
+        '_blank'
+    )
+
+}
+
+</script>
 
 </script>
 </body>
