@@ -744,6 +744,24 @@ body::before{
     </div>
 
 </section>
+<script>
 
+function changeShirt(image){
+
+    const shirt = document.getElementById('productImage')
+
+    shirt.style.opacity = '0'
+
+    setTimeout(() => {
+
+        shirt.src = image
+
+        shirt.style.opacity = '1'
+
+    }, 200)
+
+}
+
+</script>
 </body>
 </html>
